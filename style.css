@@ -1,4 +1,4 @@
-/* style.css – Darwin Portfolio v2 (with profile image & seminars) */
+/* style.css – Darwin Portfolio v3 (with hamburger menu) */
 * {
   margin: 0;
   padding: 0;
@@ -73,9 +73,44 @@ body {
   color: transparent;
   letter-spacing: -0.5px;
 }
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.hamburger .bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text);
+  border-radius: 4px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Navigation menu (desktop) */
+.nav-menu {
+  display: flex;
+  gap: 0.8rem;
+}
 nav a {
   color: var(--text-muted);
-  margin: 0 1rem;
+  margin: 0 0.5rem;
   text-decoration: none;
   font-weight: 500;
   transition: var(--transition-default);
@@ -89,7 +124,7 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* hero */
+/* hero section (unchanged, keep from previous) */
 .hero {
   min-height: 90vh;
   display: flex;
@@ -170,8 +205,6 @@ nav a:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 22px rgba(59, 130, 246, 0.4);
 }
-
-/* floating shapes */
 .floating-shape {
   position: absolute;
   width: 280px;
@@ -510,23 +543,86 @@ footer i {
   100% { transform: translate(30px, -20px) scale(1.1); opacity: 0.8; }
 }
 
-/* responsive */
+/* ========== RESPONSIVE: HAMBURGER MENU ========== */
 @media (max-width: 768px) {
-  .navbar { flex-direction: column; gap: 0.8rem; padding: 1rem; }
-  nav a { margin: 0 0.6rem; font-size: 0.85rem; }
-  .hero h1 { font-size: 2.4rem; }
-  .hero-tagline { font-size: 1rem; }
-  .section { padding: 3rem 1rem; }
-  .section-header h2 { font-size: 1.8rem; }
-  .about-wrapper { flex-direction: column; text-align: center; }
-  .about-content { text-align: center; }
-  .about-stats { justify-content: center; }
-  .projects-grid, .seminars-grid { grid-template-columns: 1fr; }
-  .contact-item { width: 100%; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .hamburger {
+    display: flex;
+  }
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: calc(100vh - 70px);
+    background: rgba(17, 24, 39, 0.98);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    transition: left 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border-right: 1px solid var(--primary);
+    z-index: 999;
+  }
+  .nav-menu.active {
+    left: 0;
+  }
+  nav a {
+    margin: 0;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    width: 80%;
+    justify-content: center;
+  }
+  .navbar {
+    padding: 1rem;
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+  .hero-tagline {
+    font-size: 1rem;
+  }
+  .section {
+    padding: 3rem 1rem;
+  }
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+  .about-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-content {
+    text-align: center;
+  }
+  .about-stats {
+    justify-content: center;
+  }
+  .projects-grid, .seminars-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-item {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
 }
+
 @media (max-width: 480px) {
-  .hero h1 { font-size: 1.9rem; }
-  .hero-desc span { font-size: 0.7rem; }
-  .btn-primary { padding: 0.7rem 1.4rem; }
-  .seminar-card h3 { font-size: 1rem; }
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .hero-desc span {
+    font-size: 0.7rem;
+  }
+  .btn-primary {
+    padding: 0.7rem 1.4rem;
+  }
+  .seminar-card h3 {
+    font-size: 1rem;
+  }
 }

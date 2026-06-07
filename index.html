@@ -13,7 +13,13 @@
 
   <header class="navbar">
     <h2 class="logo">Darwin</h2>
-    <nav id="nav">
+    <!-- Hamburger button (visible on mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav id="nav" class="nav-menu">
       <a href="#about"><i class="fas fa-user"></i> About</a>
       <a href="#skills"><i class="fas fa-code"></i> Skills</a>
       <a href="#projects"><i class="fas fa-laptop-code"></i> Projects</a>
@@ -115,7 +121,7 @@
       </div>
     </section>
 
-    <!-- SEMINARS SECTION – PROFESSIONAL DEVELOPMENT -->
+    <!-- SEMINARS SECTION -->
     <section id="seminars" class="section reveal">
       <div class="container">
         <div class="section-header">
@@ -124,70 +130,60 @@
           <div class="underline"></div>
         </div>
         <div class="seminars-grid">
-          <!-- card 1 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-shield-haltered"></i></div>
             <div class="seminar-date">May 8, 2024</div>
             <h3>Anti-Cybercrime Upskilling Initiative (Project Acuity)</h3>
             <p>Participated in a cybersecurity awareness and upskilling program focused on understanding cyber threats, cybercrime prevention, and responsible digital practices.</p>
           </div>
-          <!-- card 2 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-microchip"></i></div>
             <div class="seminar-date">May 16, 2023</div>
             <h3>Technological Talk of Synergy: Electrical and Electronics Engineering Summit</h3>
             <p>Attended discussions on emerging technologies, innovations, and advancements in electrical and electronics engineering.</p>
           </div>
-          <!-- card 3 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-link"></i></div>
             <div class="seminar-date">September 24, 2024</div>
             <h3>Global Blockchain Congress 2024</h3>
             <p>Participated in industry discussions covering blockchain technology, digital assets, decentralization, and emerging Web3 innovations.</p>
           </div>
-          <!-- card 4 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-laptop-code"></i></div>
             <div class="seminar-date">April 11, 2025</div>
             <h3>DEVCON iThink ICP Bootcamp</h3>
             <p>Completed a technology bootcamp focused on software development concepts, innovation, and practical application development.</p>
           </div>
-          <!-- card 5 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-users"></i></div>
             <div class="seminar-date">April 11, 2025</div>
             <h3>Founders Live</h3>
             <p>Attended entrepreneurship and startup-focused sessions featuring innovation, business development, and technology-driven solutions.</p>
           </div>
-          <!-- card 6 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-lightbulb"></i></div>
             <div class="seminar-date">February 18, 2025</div>
             <h3>Tech Talk: Innovate, Design, Present: Creating Solutions that Matter</h3>
             <p>Participated in discussions on innovation, problem-solving, user-centered design, and presenting impactful technology solutions.</p>
           </div>
-          <!-- card 7 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-brain"></i></div>
             <div class="seminar-date">November 21, 2025</div>
             <h3>Awareness-Raising Campaign on AI through Hour of Code</h3>
             <p>Engaged in activities promoting Artificial Intelligence awareness, coding education, and responsible technology adoption.</p>
           </div>
-          <!-- card 8 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-city"></i></div>
             <div class="seminar-date">October 13, 2025</div>
             <h3>Internet of Things (IoT) in Smart Cities</h3>
             <p>Attended a seminar exploring IoT applications, smart city technologies, automation systems, and connected devices.</p>
           </div>
-          <!-- card 9 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-drafting-compass"></i></div>
             <div class="seminar-date">October 13, 2025</div>
             <h3>Software Development and Design Thinking</h3>
             <p>Participated in discussions focused on software development methodologies, innovation processes, and design thinking principles.</p>
           </div>
-          <!-- card 10 -->
           <div class="seminar-card">
             <div class="seminar-icon"><i class="fas fa-chart-line"></i></div>
             <div class="seminar-date">October 27–28, 2025</div>
@@ -234,6 +230,7 @@
   <footer>
     <p>© 2026 Darwin Palaguyan — crafted with <i class="fas fa-heart"></i> & smooth transitions</p>
   </footer>
-<script src="script.js"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>
