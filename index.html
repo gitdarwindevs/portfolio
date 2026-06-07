@@ -2,80 +2,244 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Darwin Palaguyan | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Darwin Palaguyan | full-stack portfolio</title>
+  <!-- Google Fonts + Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <header class="navbar">
-    <h2>Darwin</h2>
+    <h2 class="logo">Darwin</h2>
     <nav id="nav">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#about"><i class="fas fa-user"></i> About</a>
+      <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+      <a href="#projects"><i class="fas fa-laptop-code"></i> Projects</a>
+      <a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Hi, I'm Darwin 👋</h1>
-    <p>Associate in Computer Technology Graduate</p>
-    <p>Web Developer • IoT Enthusiast • Beginner Software Engineer</p>
-    <a href="#projects" class="btn">View My Work</a>
-  </section>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-terminal"></i> portfolio 2026</div>
+        <h1>Hi, I'm Darwin Palaguyan <span class="wave">👋</span></h1>
+        <p class="hero-tagline">Associate in Computer Technology Graduate</p>
+        <div class="hero-desc">
+          <span><i class="fas fa-globe"></i> Web Developer</span>
+          <span><i class="fas fa-microchip"></i> IoT Enthusiast</span>
+          <span><i class="fas fa-rocket"></i> Beginner Software Engineer</span>
+        </div>
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> View My Work</a>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-shape"></div>
+        <div class="floating-shape second"></div>
+      </div>
+    </section>
 
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>
-      I am a recent ACT graduate passionate about web development, IoT systems,
-      and building real-world projects using HTML, CSS, JavaScript, Arduino, and ESP32.
-    </p>
-  </section>
+    <section id="about" class="section reveal">
+      <div class="container">
+        <div class="section-header">
+          <i class="fas fa-user-astronaut"></i>
+          <h2>About Me</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="about-content">
+          <p>I am a passionate ACT graduate with a strong drive for building interactive web experiences and intelligent IoT systems. I love turning ideas into real-world solutions using modern web technologies, microcontrollers, and clean code. Curiosity fuels my growth — and I’m always ready for the next challenge.</p>
+          <div class="about-stats">
+            <div class="stat"><i class="fas fa-code"></i> 12+ projects</div>
+            <div class="stat"><i class="fas fa-coffee"></i> always learning</div>
+            <div class="stat"><i class="fas fa-heart"></i> open source</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="skills" class="section">
-    <h2>Skills</h2>
-    <div class="grid">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>Git</span>
-      <span>GitHub</span>
-      <span>Arduino</span>
-      <span>ESP32</span>
-    </div>
-  </section>
+    <section id="skills" class="section reveal">
+      <div class="container">
+        <div class="section-header">
+          <i class="fas fa-cogs"></i>
+          <h2>Tech Stack & Skills</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="skills-grid">
+          <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
+          <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+          <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+          <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
+          <span class="skill-tag"><i class="fas fa-microchip"></i> Arduino</span>
+          <span class="skill-tag"><i class="fas fa-wifi"></i> ESP32</span>
+          <span class="skill-tag"><i class="fas fa-mobile-alt"></i> Responsive UI</span>
+          <span class="skill-tag"><i class="fas fa-database"></i> Firebase</span>
+        </div>
+      </div>
+    </section>
 
-  <section id="projects" class="section">
-    <h2>Projects</h2>
+    <section id="projects" class="section reveal">
+      <div class="container">
+        <div class="section-header">
+          <i class="fas fa-project-diagram"></i>
+          <h2>Featured Projects</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="projects-grid">
+          <div class="card project-card">
+            <div class="card-icon"><i class="fas fa-home"></i></div>
+            <h3>Smart Control System</h3>
+            <p>IoT-based home automation using ESP32, relay modules, and real-time dashboard. Monitor & control appliances remotely.</p>
+            <div class="card-footer"><span><i class="fas fa-microchip"></i> ESP32</span> <i class="fas fa-arrow-right card-arrow"></i></div>
+          </div>
+          <div class="card project-card">
+            <div class="card-icon"><i class="fas fa-book-open"></i></div>
+            <h3>Civil Service Reviewer</h3>
+            <p>Web-based exam simulator with timed quizzes, score tracking, and progress analytics — designed for future civil servants.</p>
+            <div class="card-footer"><span><i class="fas fa-code"></i> HTML/CSS/JS</span> <i class="fas fa-arrow-right card-arrow"></i></div>
+          </div>
+          <div class="card project-card">
+            <div class="card-icon"><i class="fas fa-bezier-curve"></i></div>
+            <h3>Portfolio 2026</h3>
+            <p>Fully animated responsive portfolio with scroll effects, smooth interactions, and modern design — you're looking at it!</p>
+            <div class="card-footer"><span><i class="fab fa-github"></i> open source</span> <i class="fas fa-arrow-right card-arrow"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="card">
-      <h3>Smart Control System</h3>
-      <p>IoT-based home control system using ESP32.</p>
-    </div>
-
-    <div class="card">
-      <h3>Civil Service Reviewer</h3>
-      <p>Web-based exam reviewer platform for students.</p>
-    </div>
-
-    <div class="card">
-      <h3>Portfolio Website</h3>
-      <p>This website you are viewing right now.</p>
-    </div>
-
-  </section>
-
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <p>Email: yourname@email.com</p>
-    <p>GitHub: github.com/gitdarwindevs</p>
-  </section>
+    <section id="contact" class="section reveal">
+      <div class="container">
+        <div class="section-header">
+          <i class="fas fa-envelope-open-text"></i>
+          <h2>Let’s Connect</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>darwin.p@devportfolio.com</span>
+              <button class="copy-btn" data-clip="darwin.p@devportfolio.com"><i class="far fa-copy"></i></button>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-github"></i>
+              <a href="https://github.com/gitdarwindevs" target="_blank" rel="noopener noreferrer">github.com/gitdarwindevs</a>
+              <i class="fas fa-external-link-alt small-icon"></i>
+            </div>
+            <div class="social-links">
+              <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Dev.to" class="social-icon"><i class="fab fa-dev"></i></a>
+            </div>
+          </div>
+          <div class="contact-note">
+            <p><i class="fas fa-comment-dots"></i> Open for collaborations, IoT projects, and frontend opportunities. Let's build something meaningful.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2026 Darwin Palaguyan</p>
+    <p>© 2026 Darwin Palaguyan — crafted with <i class="fas fa-heart"></i> & smooth transitions</p>
   </footer>
 
+  <script>
+    (function() {
+      // ----- SMOOTH SCROLL (with offset for sticky header)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === "#" || targetId === "") return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            const offset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }
+        });
+      });
+
+      // ----- SCROLL REVEAL ANIMATION (Intersection Observer)
+      const revealElements = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+      revealElements.forEach(el => observer.observe(el));
+
+      // ----- CLICK ANIMATION (micro-interaction: scale + ripple effect)
+      const clickables = document.querySelectorAll('.btn, .project-card, .skill-tag, .social-icon, .copy-btn, nav a');
+      clickables.forEach(el => {
+        el.addEventListener('mousedown', function(e) {
+          this.style.transition = 'transform 0.08s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+          this.style.transform = 'scale(0.97)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 120);
+        });
+        // optional: prevent stuck transform on drag
+        el.addEventListener('mouseup', () => {
+          if(el.style.transform) el.style.transform = '';
+        });
+        el.addEventListener('mouseleave', () => {
+          if(el.style.transform) el.style.transform = '';
+        });
+      });
+
+      // ----- copy email functionality with animation feedback
+      const copyBtn = document.querySelector('.copy-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const emailText = copyBtn.getAttribute('data-clip');
+          navigator.clipboard.writeText(emailText).then(() => {
+            const originalIcon = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            copyBtn.classList.add('copied-feedback');
+            setTimeout(() => {
+              copyBtn.innerHTML = originalIcon;
+              copyBtn.classList.remove('copied-feedback');
+            }, 1200);
+          }).catch(() => {});
+        });
+      }
+
+      // ----- ADDITIONAL HOVER / ENTRANCE ANIMATIONS: header adds shadow + dynamic glint
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add('navbar-scrolled');
+        } else {
+          navbar.classList.remove('navbar-scrolled');
+        }
+      });
+
+      // extra: parallax style hero floating movement (mouse move effect - subtle)
+      const hero = document.querySelector('.hero');
+      if(hero){
+        document.addEventListener('mousemove', (e) => {
+          const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+          const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+          const shapes = document.querySelectorAll('.floating-shape');
+          shapes.forEach((shape, idx) => {
+            const speed = idx === 0 ? 12 : 20;
+            shape.style.transform = `translate(${xAxis / speed}px, ${yAxis / speed}px)`;
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
