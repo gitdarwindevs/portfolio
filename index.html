@@ -1,245 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Darwin Palaguyan | full-stack portfolio</title>
-  <!-- Google Fonts + Font Awesome Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darwin Mauricio Palaguyan | Portfolio</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
 </head>
+
 <body>
 
-  <header class="navbar">
-    <h2 class="logo">Darwin</h2>
-    <nav id="nav">
-      <a href="#about"><i class="fas fa-user"></i> About</a>
-      <a href="#skills"><i class="fas fa-code"></i> Skills</a>
-      <a href="#projects"><i class="fas fa-laptop-code"></i> Projects</a>
-      <a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a>
-    </nav>
-  </header>
+<header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <div class="hero-badge"><i class="fas fa-terminal"></i> portfolio 2026</div>
-        <h1>Hi, I'm Darwin Palaguyan <span class="wave">👋</span></h1>
-        <p class="hero-tagline">Associate in Computer Technology Graduate</p>
-        <div class="hero-desc">
-          <span><i class="fas fa-globe"></i> Web Developer</span>
-          <span><i class="fas fa-microchip"></i> IoT Enthusiast</span>
-          <span><i class="fas fa-rocket"></i> Beginner Software Engineer</span>
-        </div>
-        <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> View My Work</a>
-      </div>
-      <div class="hero-visual">
-        <div class="floating-shape"></div>
-        <div class="floating-shape second"></div>
-      </div>
-    </section>
+<div class="logo">
+Darwin<span>.</span>
+</div>
 
-    <section id="about" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-user-astronaut"></i>
-          <h2>About Me</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="about-content">
-          <p>I am a passionate ACT graduate with a strong drive for building interactive web experiences and intelligent IoT systems. I love turning ideas into real-world solutions using modern web technologies, microcontrollers, and clean code. Curiosity fuels my growth — and I’m always ready for the next challenge.</p>
-          <div class="about-stats">
-            <div class="stat"><i class="fas fa-code"></i> 12+ projects</div>
-            <div class="stat"><i class="fas fa-coffee"></i> always learning</div>
-            <div class="stat"><i class="fas fa-heart"></i> open source</div>
-          </div>
-        </div>
-      </div>
-    </section>
+<button id="menu-btn">
+<i class="fas fa-bars"></i>
+</button>
 
-    <section id="skills" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-cogs"></i>
-          <h2>Tech Stack & Skills</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="skills-grid">
-          <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
-          <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
-          <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
-          <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
-          <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
-          <span class="skill-tag"><i class="fas fa-microchip"></i> Arduino</span>
-          <span class="skill-tag"><i class="fas fa-wifi"></i> ESP32</span>
-          <span class="skill-tag"><i class="fas fa-mobile-alt"></i> Responsive UI</span>
-          <span class="skill-tag"><i class="fas fa-database"></i> Firebase</span>
-        </div>
-      </div>
-    </section>
+<nav id="nav">
+<a href="#about">About</a>
+<a href="#education">Education</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#seminars">Seminars</a>
+<a href="#contact">Contact</a>
+</nav>
 
-    <section id="projects" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-project-diagram"></i>
-          <h2>Featured Projects</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="projects-grid">
-          <div class="card project-card">
-            <div class="card-icon"><i class="fas fa-home"></i></div>
-            <h3>Smart Control System</h3>
-            <p>IoT-based home automation using ESP32, relay modules, and real-time dashboard. Monitor & control appliances remotely.</p>
-            <div class="card-footer"><span><i class="fas fa-microchip"></i> ESP32</span> <i class="fas fa-arrow-right card-arrow"></i></div>
-          </div>
-          <div class="card project-card">
-            <div class="card-icon"><i class="fas fa-book-open"></i></div>
-            <h3>Civil Service Reviewer</h3>
-            <p>Web-based exam simulator with timed quizzes, score tracking, and progress analytics — designed for future civil servants.</p>
-            <div class="card-footer"><span><i class="fas fa-code"></i> HTML/CSS/JS</span> <i class="fas fa-arrow-right card-arrow"></i></div>
-          </div>
-          <div class="card project-card">
-            <div class="card-icon"><i class="fas fa-bezier-curve"></i></div>
-            <h3>Portfolio 2026</h3>
-            <p>Fully animated responsive portfolio with scroll effects, smooth interactions, and modern design — you're looking at it!</p>
-            <div class="card-footer"><span><i class="fab fa-github"></i> open source</span> <i class="fas fa-arrow-right card-arrow"></i></div>
-          </div>
-        </div>
-      </div>
-    </section>
+</header>
 
-    <section id="contact" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-envelope-open-text"></i>
-          <h2>Let’s Connect</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="contact-wrapper">
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>darwin.p@devportfolio.com</span>
-              <button class="copy-btn" data-clip="darwin.p@devportfolio.com"><i class="far fa-copy"></i></button>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-github"></i>
-              <a href="https://github.com/gitdarwindevs" target="_blank" rel="noopener noreferrer">github.com/gitdarwindevs</a>
-              <i class="fas fa-external-link-alt small-icon"></i>
-            </div>
-            <div class="social-links">
-              <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a>
-              <a href="#" aria-label="Dev.to" class="social-icon"><i class="fab fa-dev"></i></a>
-            </div>
-          </div>
-          <div class="contact-note">
-            <p><i class="fas fa-comment-dots"></i> Open for collaborations, IoT projects, and frontend opportunities. Let's build something meaningful.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="container">
 
-  <footer>
-    <p>© 2026 Darwin Palaguyan — crafted with <i class="fas fa-heart"></i> & smooth transitions</p>
-  </footer>
+<aside class="sidebar">
 
-  <script>
-    (function() {
-      // ----- SMOOTH SCROLL (with offset for sticky header)
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href');
-          if (targetId === "#" || targetId === "") return;
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            e.preventDefault();
-            const offset = 80;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth"
-            });
-          }
-        });
-      });
+<img src="images/profile.jpg" alt="Darwin Palaguyan">
 
-      // ----- SCROLL REVEAL ANIMATION (Intersection Observer)
-      const revealElements = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
-      revealElements.forEach(el => observer.observe(el));
+<h1>Darwin Mauricio Palaguyan</h1>
 
-      // ----- CLICK ANIMATION (micro-interaction: scale + ripple effect)
-      const clickables = document.querySelectorAll('.btn, .project-card, .skill-tag, .social-icon, .copy-btn, nav a');
-      clickables.forEach(el => {
-        el.addEventListener('mousedown', function(e) {
-          this.style.transition = 'transform 0.08s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
-          this.style.transform = 'scale(0.97)';
-          setTimeout(() => {
-            this.style.transform = '';
-          }, 120);
-        });
-        // optional: prevent stuck transform on drag
-        el.addEventListener('mouseup', () => {
-          if(el.style.transform) el.style.transform = '';
-        });
-        el.addEventListener('mouseleave', () => {
-          if(el.style.transform) el.style.transform = '';
-        });
-      });
+<h2>Web Developer</h2>
 
-      // ----- copy email functionality with animation feedback
-      const copyBtn = document.querySelector('.copy-btn');
-      if (copyBtn) {
-        copyBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const emailText = copyBtn.getAttribute('data-clip');
-          navigator.clipboard.writeText(emailText).then(() => {
-            const originalIcon = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-            copyBtn.classList.add('copied-feedback');
-            setTimeout(() => {
-              copyBtn.innerHTML = originalIcon;
-              copyBtn.classList.remove('copied-feedback');
-            }, 1200);
-          }).catch(() => {});
-        });
-      }
+<div class="info">
 
-      // ----- ADDITIONAL HOVER / ENTRANCE ANIMATIONS: header adds shadow + dynamic glint
-      const navbar = document.querySelector('.navbar');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-          navbar.classList.add('navbar-scrolled');
-        } else {
-          navbar.classList.remove('navbar-scrolled');
-        }
-      });
+<p>
+<i class="fas fa-location-dot"></i>
+Mariveles, Bataan, Philippines
+</p>
 
-      // extra: parallax style hero floating movement (mouse move effect - subtle)
-      const hero = document.querySelector('.hero');
-      if(hero){
-        document.addEventListener('mousemove', (e) => {
-          const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
-          const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
-          const shapes = document.querySelectorAll('.floating-shape');
-          shapes.forEach((shape, idx) => {
-            const speed = idx === 0 ? 12 : 20;
-            shape.style.transform = `translate(${xAxis / speed}px, ${yAxis / speed}px)`;
-          });
-        });
-      }
-    })();
-  </script>
+<p>
+<i class="fas fa-envelope"></i>
+darwinmauriciopalaguyan@gmail.com
+</p>
+
+<p>
+<i class="fas fa-phone"></i>
++63 930 423 5402
+</p>
+
+<p>
+<i class="fab fa-github"></i>
+github.com/gitdarwindevs
+</p>
+
+</div>
+
+<a href="resume/Darwin-Palaguyan-Resume.pdf" class="resume-btn" download>
+Download Resume
+</a>
+
+</aside>
+
+<main>
+
+<section class="hero">
+
+<h1>Hello, I'm Darwin 👋</h1>
+
+<p>
+Associate in Computer Technology Graduate passionate about
+Web Development, IoT Systems, Software Development, and
+modern technology solutions.
+</p>
+
+</section>
+
+<section id="about">
+
+<h2>About Me</h2>
+
+<p>
+Recent Associate in Computer Technology graduate from Asia Pacific
+College of Advanced Studies with a strong passion for building
+responsive websites, software systems, and IoT solutions.
+I enjoy creating projects that solve real-world problems while
+continuously improving my technical skills.
+</p>
+
+</section>
+
+<section id="education">
+
+<h2>Education</h2>
+
+<div class="card">
+
+<h3>Asia Pacific College of Advanced Studies</h3>
+
+<p>Associate in Computer Technology</p>
+
+<p>Graduated: 2026</p>
+
+</div>
+
+</section>
+
+<section id="skills">
+
+<h2>Technical Skills</h2>
+
+<div class="skills-grid">
+
+<span>HTML5</span>
+<span>CSS3</span>
+<span>JavaScript</span>
+<span>PHP</span>
+<span>MySQL</span>
+<span>Git</span>
+<span>GitHub</span>
+<span>Arduino</span>
+<span>ESP32</span>
+<span>RFID</span>
+<span>Networking</span>
+<span>Technical Support</span>
+
+</div>
+
+</section>
+
+<section id="projects">
+
+<h2>Projects</h2>
+
+<div class="projects">
+
+<div class="card">
+<h3>Civil Service Master Reviewer</h3>
+<p>Web-based reviewer platform for Civil Service Examination preparation.</p>
+</div>
+
+<div class="card">
+<h3>Smart Control System</h3>
+<p>ESP32-based appliance control system with web dashboard.</p>
+</div>
+
+<div class="card">
+<h3>RFID Door Lock System</h3>
+<p>Arduino and RFID-based smart access control solution.</p>
+</div>
+
+<div class="card">
+<h3>POS & Online Ordering System</h3>
+<p>Business management and ordering platform.</p>
+</div>
+
+<div class="card">
+<h3>Music Website</h3>
+<p>Responsive music platform with modern user experience.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="seminars">
+
+<h2>Seminars & Professional Development</h2>
+
+<div class="card">
+
+<ul>
+
+<li>Anti-Cybercrime Upskilling Initiative (Project Acuity) – May 8, 2024</li>
+
+<li>Technological Talk of Synergy: Electrical and Electronics Engineering Summit – May 16, 2023</li>
+
+<li>Global Blockchain Congress 2024 – September 24, 2024</li>
+
+<li>Awareness-Raising Campaign on AI through Hour of Code – November 21, 2025</li>
+
+<li>Tech Talk: Innovate, Design, Present: Creating Solutions that Matter – February 18, 2025</li>
+
+<li>Internet of Things (IoT) in Smart Cities – October 13, 2025</li>
+
+<li>Software Development and Design Thinking – October 13, 2025</li>
+
+<li>Global Blockchain Congress 2025 – October 27–28, 2025</li>
+
+<li>DEVCON iThink ICP Bootcamp – April 11, 2025</li>
+
+<li>Founders Live – April 11, 2025</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact Me</h2>
+
+<div class="card">
+
+<p>Email: darwinmauriciopalaguyan@gmail.com</p>
+
+<p>Phone: +63 930 423 5402</p>
+
+<p>Location: Mariveles, Bataan</p>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
