@@ -1,236 +1,753 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Darwin Palaguyan | Portfolio</title>
-  <!-- Google Fonts + Font Awesome Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Darwin Mauricio Palaguyan - Web Developer portfolio showcasing modern web development, IoT projects, and professional skills.">
+    <meta name="keywords" content="Web Developer, IoT, Portfolio, Philippines, Three.js, GSAP">
+    <meta name="author" content="Darwin Mauricio Palaguyan">
+    <title>Darwin Palaguyan | Web Developer & IoT Innovator</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- GSAP, ScrollTrigger, Lenis Smooth Scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    
+    <!-- Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050b14;
+            color: #eef5ff;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* Custom Cursor (Desktop) */
+        @media (min-width: 768px) {
+            body {
+                cursor: none;
+            }
+            .cursor-dot, .cursor-outline {
+                pointer-events: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 9999;
+                border-radius: 50%;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+            .cursor-dot {
+                width: 6px;
+                height: 6px;
+                background-color: #00f2ff;
+                transform: translate(-50%, -50%);
+            }
+            .cursor-outline {
+                width: 32px;
+                height: 32px;
+                border: 1.5px solid rgba(0, 242, 255, 0.6);
+                transform: translate(-50%, -50%) scale(1);
+                transition: transform 0.2s ease, background 0.2s ease;
+                backdrop-filter: blur(2px);
+            }
+            a:hover ~ .cursor-outline, button:hover ~ .cursor-outline, .cursor-hover {
+                transform: translate(-50%, -50%) scale(1.5);
+                background: rgba(0, 242, 255, 0.15);
+                border-color: #00f2ff;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00f2ff, #3b82f6);
+            z-index: 10000;
+            transition: width 0.1s;
+            box-shadow: 0 0 8px #00f2ff;
+        }
+
+        /* Loader */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: #03070f;
+            z-index: 20000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            transition: opacity 1s ease, visibility 0.5s;
+        }
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(0, 242, 255, 0.2);
+            border-top: 3px solid #00f2ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader p {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 5%;
+            width: 90%;
+            background: rgba(5, 15, 25, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 0.9rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #fff, #00f2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #eef5ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            position: relative;
+        }
+        .nav-links a.active {
+            color: #00f2ff;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #00f2ff;
+            transition: 0.3s;
+        }
+        .nav-links a.active::after, .nav-links a:hover::after { width: 100%; }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #00f2ff;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 70%;
+                height: auto;
+                background: rgba(5, 15, 25, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                border-radius: 24px;
+                transition: 0.4s ease;
+                border: 1px solid rgba(0,242,255,0.3);
+                gap: 1.5rem;
+            }
+            .nav-links.active {
+                right: 5%;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* Glass Sections */
+        section {
+            padding: 100px 7%;
+            position: relative;
+            z-index: 5;
+        }
+        .glass-card {
+            background: rgba(10, 20, 30, 0.5);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .section-title {
+            font-size: 2.7rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            background: linear-gradient(120deg, #fff, #68d8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .hero-content { flex: 1; }
+        .hero-image { flex: 0.8; text-align: center; }
+        .profile-pic {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(0,242,255,0.6);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .hero .typed-container {
+            font-size: 2rem;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+        .typed-text {
+            color: #00f2ff;
+            border-right: 2px solid #00f2ff;
+            padding-right: 5px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            background: transparent;
+            border: 1px solid #00f2ff;
+            color: #00f2ff;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(8px);
+        }
+        .btn-primary {
+            background: linear-gradient(95deg, #00c6ff, #0072ff);
+            border: none;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,114,255,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-3px); filter: brightness(1.05); }
+        .btn-outline:hover { background: rgba(0,242,255,0.1); transform: translateY(-3px); }
+
+        /* Stats */
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat-item { text-align: center; flex: 1; }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: #00f2ff; }
+
+        /* Skills Grid */
+        .skills-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .skill-card {
+            background: rgba(15, 25, 40, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 1.8rem;
+            border-radius: 28px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            border: 1px solid rgba(0,242,255,0.2);
+        }
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 35px rgba(0,242,255,0.2);
+            border-color: #00f2ff;
+        }
+        .skill-card i { font-size: 2.5rem; margin-bottom: 1rem; color: #00f2ff; }
+        .project-card {
+            background: rgba(10, 18, 28, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-12px) rotateX(4deg);
+            box-shadow: 0 30px 40px -15px rgba(0,242,255,0.3);
+        }
+        .project-img {
+            height: 180px;
+            background: linear-gradient(145deg, #0a1a2a, #04121e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #00f2ff;
+        }
+        .project-info { padding: 1.5rem; }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 30px;
+            border-left: 2px solid #00f2ff;
+            transition: 0.3s;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        .timeline-item.glowing {
+            text-shadow: 0 0 5px #00f2ff;
+        }
+        .timeline-date { font-weight: 700; color: #00f2ff; margin-bottom: 5px; }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #0a1420;
+            max-width: 500px;
+            padding: 2rem;
+            border-radius: 28px;
+            border: 1px solid #00f2ff;
+        }
+
+        /* Contact */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        .contact-info { flex: 1; }
+        .contact-form { flex: 1; }
+        .copy-btn {
+            background: none;
+            border: none;
+            color: #00f2ff;
+            cursor: pointer;
+            margin-left: 12px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            background: rgba(20,30,45,0.7);
+            border: 1px solid #2c3e55;
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        button { background: none; border: none; }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            background: rgba(0,242,255,0.2);
+            backdrop-filter: blur(10px);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            border: 1px solid #00f2ff;
+            transition: 0.3s;
+        }
+
+        footer { text-align: center; padding: 30px; background: #03070f; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            .profile-pic { width: 200px; height: 200px; }
+            section { padding: 60px 5%; }
+        }
+    </style>
 </head>
 <body>
 
-  <header class="navbar">
-    <h2 class="logo">Darwin</h2>
-    <!-- Hamburger button (visible on mobile) -->
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-    <nav id="nav" class="nav-menu">
-      <a href="#about"><i class="fas fa-user"></i> About</a>
-      <a href="#skills"><i class="fas fa-code"></i> Skills</a>
-      <a href="#projects"><i class="fas fa-laptop-code"></i> Projects</a>
-      <a href="#seminars"><i class="fas fa-chalkboard-user"></i> Seminars</a>
-      <a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a>
-    </nav>
-  </header>
+<div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+    <p>LOADING PORTFOLIO</p>
+</div>
+<div class="progress-bar" id="progressBar"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <div class="hero-badge"><i class="fas fa-terminal"></i> portfolio 2026</div>
-        <h1>Hi, I'm Darwin Palaguyan <span class="wave">👋</span></h1>
-        <p class="hero-tagline">Associate in Computer Technology Graduate</p>
-        <div class="hero-desc">
-          <span><i class="fas fa-globe"></i> Web Developer</span>
-          <span><i class="fas fa-microchip"></i> IoT Enthusiast</span>
-          <span><i class="fas fa-rocket"></i> Software Engineer</span>
-        </div>
-        <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> View My Work</a>
-      </div>
-      <div class="hero-visual">
-        <div class="floating-shape"></div>
-        <div class="floating-shape second"></div>
-      </div>
-    </section>
+<nav>
+    <div class="logo">DP<span style="color:#00f2ff">.</span></div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#seminars" class="nav-link">Seminars</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </div>
+</nav>
 
-    <section id="about" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-user-astronaut"></i>
-          <h2>About Me</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="about-wrapper">
-          <div class="about-image">
-            <img src="images/profile.jpg" alt="Darwin Palaguyan profile" class="profile-img">
-          </div>
-          <div class="about-content">
-            <p>I am a passionate ACT graduate with a strong drive for building interactive web experiences and intelligent IoT systems. I love turning ideas into real-world solutions using modern web technologies, microcontrollers, and clean code. Curiosity fuels my growth — and I’m always ready for the next challenge.</p>
-            <div class="about-stats">
-              <div class="stat"><i class="fas fa-code"></i> 15+ projects</div>
-              <div class="stat"><i class="fas fa-certificate"></i> 12+ seminars</div>
-              <div class="stat"><i class="fas fa-heart"></i> open source</div>
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Darwin Mauricio <br>Palaguyan</h1>
+            <div class="typed-container">
+                <span class="typed-text"></span><span class="cursor">|</span>
             </div>
-          </div>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" id="viewProjectsBtn"><i class="fas fa-code-branch"></i> View Projects</button>
+                <button class="btn btn-outline" id="contactScrollBtn"><i class="fas fa-envelope"></i> Contact Me</button>
+                <button class="btn btn-outline" id="downloadResumeBtn"><i class="fas fa-download"></i> Download Resume</button>
+            </div>
         </div>
-      </div>
+        <div class="hero-image">
+            <img src="images/profile.jpg" alt="Darwin" class="profile-pic" onerror="this.onerror=null; this.src='https://placehold.co/400x400/0a1420/00f2ff?text=DP';">
+        </div>
     </section>
 
-    <section id="skills" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-cogs"></i>
-          <h2>Tech Stack & Skills</h2>
-          <div class="underline"></div>
+    <!-- About -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="glass-card" style="padding: 2rem;">
+            <p style="font-size: 1.2rem; line-height: 1.6;">Darwin Mauricio Palaguyan is a recent Associate in Computer Technology graduate from Asia Pacific College of Advanced Studies with a strong passion for Web Development, Software Development, Internet of Things (IoT), and emerging technologies.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0;">
+                <span class="btn-outline" style="padding: 6px 18px;">🌐 Responsive Web Dev</span>
+                <span class="btn-outline" style="padding: 6px 18px;">⚙️ Software Development</span>
+                <span class="btn-outline" style="padding: 6px 18px;">📡 Internet of Things (IoT)</span>
+                <span class="btn-outline" style="padding: 6px 18px;">🧩 Problem Solving</span>
+                <span class="btn-outline" style="padding: 6px 18px;">📚 Continuous Learning</span>
+            </div>
+            <div class="stats-grid" id="statsContainer">
+                <div class="stat-item"><div class="stat-number" data-target="5">0</div><div>Projects Completed</div></div>
+                <div class="stat-item"><div class="stat-number" data-target="18">0</div><div>Technical Skills</div></div>
+                <div class="stat-item"><div class="stat-number" data-target="10">0</div><div>Seminars Attended</div></div>
+                <div class="stat-item"><div class="stat-number" data-target="25">0</div><div>Technologies Used</div></div>
+            </div>
         </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2 class="section-title">Technical Arsenal</h2>
         <div class="skills-grid">
-          <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
-          <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
-          <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
-          <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
-          <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
-          <span class="skill-tag"><i class="fas fa-microchip"></i> Arduino</span>
-          <span class="skill-tag"><i class="fas fa-wifi"></i> ESP32</span>
-          <span class="skill-tag"><i class="fas fa-mobile-alt"></i> Responsive UI</span>
-          <span class="skill-tag"><i class="fas fa-database"></i> Firebase</span>
+            <div class="skill-card"><i class="fab fa-html5"></i><h3>Front-End</h3><p>HTML5, CSS3, JavaScript, Responsive Design</p></div>
+            <div class="skill-card"><i class="fas fa-database"></i><h3>Back-End</h3><p>PHP, MySQL</p></div>
+            <div class="skill-card"><i class="fas fa-tools"></i><h3>Tools</h3><p>Git, GitHub, VS Code</p></div>
+            <div class="skill-card"><i class="fas fa-microchip"></i><h3>IoT</h3><p>Arduino, ESP32, RFID Systems</p></div>
+            <div class="skill-card"><i class="fas fa-network-wired"></i><h3>Networking & Support</h3><p>Troubleshooting, Hardware Installation, Networking Fundamentals, Technical Support</p></div>
         </div>
-      </div>
     </section>
 
-    <section id="projects" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-project-diagram"></i>
-          <h2>Featured Projects</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="projects-grid">
-          <div class="card project-card">
-            <div class="card-icon"><i class="fas fa-home"></i></div>
-            <h3>Smart Control System</h3>
-            <p>IoT-based home automation using ESP32, relay modules, and real-time dashboard. Monitor & control appliances remotely.</p>
-            <div class="card-footer"><span><i class="fas fa-microchip"></i> ESP32</span> <i class="fas fa-arrow-right card-arrow"></i></div>
-          </div>
-          <div class="card project-card">
-            <div class="card-icon"><i class="fas fa-book-open"></i></div>
-            <h3>Civil Service Reviewer</h3>
-            <p>Web-based exam simulator with timed quizzes, score tracking, and progress analytics — designed for future civil servants.</p>
-            <div class="card-footer"><span><i class="fas fa-code"></i> HTML/CSS/JS</span> <i class="fas fa-arrow-right card-arrow"></i></div>
-          </div>
-          <div class="card project-card">
-            <div class="card-icon"><i class="fas fa-bezier-curve"></i></div>
-            <h3>Portfolio 2026</h3>
-            <p>Fully animated responsive portfolio with scroll effects, smooth interactions, and modern design — you're looking at it!</p>
-            <div class="card-footer"><span><i class="fab fa-github"></i> open source</span> <i class="fas fa-arrow-right card-arrow"></i></div>
-          </div>
-        </div>
-      </div>
+    <!-- Projects -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid" id="projectsGrid"></div>
     </section>
 
-    <!-- SEMINARS SECTION -->
-    <section id="seminars" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-chalkboard-user"></i>
-          <h2>Seminars & Professional Development</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="seminars-grid">
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-bug"></i></div>
-            <div class="seminar-date">May 8, 2024</div>
-            <h3>Anti-Cybercrime Upskilling Initiative (Project Acuity)</h3>
-            <p>Participated in a cybersecurity awareness and upskilling program focused on understanding cyber threats, cybercrime prevention, and responsible digital practices.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-microchip"></i></div>
-            <div class="seminar-date">May 16, 2023</div>
-            <h3>Technological Talk of Synergy: Electrical and Electronics Engineering Summit</h3>
-            <p>Attended discussions on emerging technologies, innovations, and advancements in electrical and electronics engineering.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-link"></i></div>
-            <div class="seminar-date">September 24, 2024</div>
-            <h3>Global Blockchain Congress 2024</h3>
-            <p>Participated in industry discussions covering blockchain technology, digital assets, decentralization, and emerging Web3 innovations.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-laptop-code"></i></div>
-            <div class="seminar-date">April 11, 2025</div>
-            <h3>DEVCON iThink ICP Bootcamp</h3>
-            <p>Completed a technology bootcamp focused on software development concepts, innovation, and practical application development.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-users"></i></div>
-            <div class="seminar-date">April 11, 2025</div>
-            <h3>Founders Live</h3>
-            <p>Attended entrepreneurship and startup-focused sessions featuring innovation, business development, and technology-driven solutions.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-lightbulb"></i></div>
-            <div class="seminar-date">February 18, 2025</div>
-            <h3>Tech Talk: Innovate, Design, Present: Creating Solutions that Matter</h3>
-            <p>Participated in discussions on innovation, problem-solving, user-centered design, and presenting impactful technology solutions.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-brain"></i></div>
-            <div class="seminar-date">November 21, 2025</div>
-            <h3>Awareness-Raising Campaign on AI through Hour of Code</h3>
-            <p>Engaged in activities promoting Artificial Intelligence awareness, coding education, and responsible technology adoption.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-city"></i></div>
-            <div class="seminar-date">October 13, 2025</div>
-            <h3>Internet of Things (IoT) in Smart Cities</h3>
-            <p>Attended a seminar exploring IoT applications, smart city technologies, automation systems, and connected devices.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-drafting-compass"></i></div>
-            <div class="seminar-date">October 13, 2025</div>
-            <h3>Software Development and Design Thinking</h3>
-            <p>Participated in discussions focused on software development methodologies, innovation processes, and design thinking principles.</p>
-          </div>
-          <div class="seminar-card">
-            <div class="seminar-icon"><i class="fas fa-chart-line"></i></div>
-            <div class="seminar-date">October 27–28, 2025</div>
-            <h3>Global Blockchain Congress 2025</h3>
-            <p>Attended advanced blockchain discussions and industry presentations highlighting emerging trends and practical applications of blockchain technology.</p>
-          </div>
-        </div>
-      </div>
+    <!-- Seminars Timeline -->
+    <section id="seminars">
+        <h2 class="section-title">Seminars & Certifications</h2>
+        <div class="timeline" id="timelineContainer"></div>
     </section>
 
-    <section id="contact" class="section reveal">
-      <div class="container">
-        <div class="section-header">
-          <i class="fas fa-envelope-open-text"></i>
-          <h2>Let’s Connect</h2>
-          <div class="underline"></div>
+    <!-- Education & Career Objective -->
+    <section id="education">
+        <h2 class="section-title">Education & Objective</h2>
+        <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem;">
+            <h3>🎓 Asia Pacific College of Advanced Studies</h3>
+            <p>Associate in Computer Technology (ACT) | Graduation Year: 2026</p>
         </div>
-        <div class="contact-wrapper">
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>darwinmauriciopalaguyan@gmail.com</span>
-              <button class="copy-btn" data-clip="darwinmauriciopalaguyan@gmail.com"><i class="far fa-copy"></i></button>
+        <div class="glass-card" style="padding: 2rem;">
+            <h3>💡 Career Objective</h3>
+            <p>To obtain an entry-level position in Web Development, Software Development, IT Support, or a related technology field where I can apply my technical knowledge, gain valuable professional experience, contribute to organizational success, and continuously enhance my skills in the IT industry.</p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title">Connect With Me</h2>
+        <div class="contact-flex">
+            <div class="contact-info glass-card" style="padding: 2rem;">
+                <p><i class="fas fa-envelope"></i> darwinmauriciopalaguyan@gmail.com <button class="copy-btn" data-copy="darwinmauriciopalaguyan@gmail.com"><i class="fas fa-copy"></i></button></p>
+                <p><i class="fas fa-phone-alt"></i> +63 930 423 5402 <button class="copy-btn" data-copy="+639304235402"><i class="fas fa-copy"></i></button></p>
+                <p><i class="fas fa-map-marker-alt"></i> Mariveles, Bataan, Philippines</p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/gitdarwindevs" target="_blank" style="color:#00f2ff;">github.com/gitdarwindevs</a></p>
             </div>
-            <div class="contact-item">
-              <i class="fab fa-github"></i>
-              <a href="https://github.com/gitdarwindevs" target="_blank" rel="noopener noreferrer">github.com/gitdarwindevs</a>
-              <i class="fas fa-external-link-alt small-icon"></i>
+            <div class="contact-form glass-card" style="padding: 2rem;">
+                <input type="text" id="contactName" placeholder="Your Name">
+                <input type="email" id="contactEmail" placeholder="Email">
+                <textarea rows="4" id="contactMsg" placeholder="Message..."></textarea>
+                <button class="btn btn-primary" id="sendMsgBtn">Send Message <i class="fas fa-paper-plane"></i></button>
             </div>
-            <div class="social-links">
-              <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a>
-              <a href="#" aria-label="Dev.to" class="social-icon"><i class="fab fa-dev"></i></a>
-            </div>
-          </div>
-          <div class="contact-note">
-            <p><i class="fas fa-comment-dots"></i> Open for collaborations, IoT projects, and frontend opportunities. Let's build something meaningful.</p>
-          </div>
         </div>
-      </div>
     </section>
-  </main>
+    <footer>
+        <p>© 2026 Darwin Mauricio Palaguyan — Innovation meets precision.</p>
+    </footer>
+</main>
 
-  <footer>
-    <p>© 2026 Darwin Palaguyan — crafted with <i class="fas fa-heart"></i> & smooth transitions</p>
-  </footer>
+<!-- Modal -->
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <button class="btn-outline" id="closeModal">Close</button>
+    </div>
+</div>
 
-  <script src="script.js"></script>
+<script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
+
+    // Three.js Setup
+    const scene = new THREE.Scene();
+    scene.background = null;
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 2, 12);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+    document.body.insertBefore(renderer.domElement, document.body.firstChild);
+    renderer.domElement.style.position = 'fixed';
+    renderer.domElement.style.top = '0';
+    renderer.domElement.style.left = '0';
+    renderer.domElement.style.zIndex = '-1';
+    
+    // Particles
+    const particleCount = 1800;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+        positions[i*3] = (Math.random() - 0.5) * 40;
+        positions[i*3+1] = (Math.random() - 0.5) * 20;
+        positions[i*3+2] = (Math.random() - 0.5) * 25 - 15;
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMat = new THREE.PointsMaterial({ color: 0x00f2ff, size: 0.08, transparent: true, opacity: 0.6 });
+    const particles = new THREE.Points(geometry, particleMat);
+    scene.add(particles);
+    
+    const torusGroup = new THREE.Group();
+    const torusKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.8, 0.22, 128, 16, 3, 4), new THREE.MeshStandardMaterial({ color: 0x2a6fdb, emissive: 0x004466, roughness: 0.3, metalness: 0.7 }));
+    torusGroup.add(torusKnot);
+    const sphereGeo = new THREE.IcosahedronGeometry(0.5, 0);
+    const floatingSphere = new THREE.Mesh(sphereGeo, new THREE.MeshStandardMaterial({ color: 0x00aaff, emissive: 0x004466 }));
+    floatingSphere.position.set(1.5, -0.8, -2);
+    torusGroup.add(floatingSphere);
+    scene.add(torusGroup);
+    
+    const ambientLight = new THREE.AmbientLight(0x222222);
+    const pointLight = new THREE.PointLight(0x2266ff, 1);
+    pointLight.position.set(3, 5, 5);
+    scene.add(ambientLight, pointLight);
+    
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; mouseY = (e.clientY / window.innerHeight) * 2 - 1; });
+    
+    let scrollY = 0;
+    window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+    
+    function animate3D() {
+        requestAnimationFrame(animate3D);
+        particles.rotation.y += 0.001;
+        torusGroup.rotation.x = scrollY * 0.002;
+        torusGroup.rotation.y = scrollY * 0.003 + mouseX * 0.5;
+        torusGroup.rotation.z = mouseY * 0.3;
+        camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 0.3 - camera.position.y) * 0.05;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+    }
+    animate3D();
+    window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+    
+    // Init Lenis
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Loader
+    window.addEventListener('load', () => {
+        setTimeout(() => { document.getElementById('loader').style.opacity = '0'; setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500); }, 800);
+        initContent();
+    });
+    
+    function initContent() {
+        // typewriter
+        const typedEl = document.querySelector('.typed-text');
+        const words = ["Web Developer", "IoT Innovator", "Problem Solver"];
+        let idx = 0, charIdx = 0, isDeleting = false;
+        function typeEffect() {
+            const current = words[idx];
+            if (isDeleting) typedEl.textContent = current.substring(0, charIdx--);
+            else typedEl.textContent = current.substring(0, charIdx++);
+            if (!isDeleting && charIdx === current.length + 1) { isDeleting = true; setTimeout(typeEffect, 1500); return; }
+            if (isDeleting && charIdx === 0) { isDeleting = false; idx = (idx+1)%words.length; }
+            setTimeout(typeEffect, isDeleting ? 70 : 120);
+        }
+        typeEffect();
+        
+        // Projects data
+        const projects = [
+            { name: "Civil Service Master Reviewer", desc: "Responsive web-based review platform for Philippine Civil Service Examination.", icon: "fas fa-book-open" },
+            { name: "Smart Control System", desc: "IoT appliance control using ESP32 technology.", icon: "fas fa-microchip" },
+            { name: "RFID Door Lock System", desc: "Smart access control with Arduino & RFID.", icon: "fas fa-door-open" },
+            { name: "POS & Online Ordering System", desc: "Web-based POS and ordering platform.", icon: "fas fa-shopping-cart" },
+            { name: "Music Website", desc: "Responsive music platform, intuitive UI.", icon: "fas fa-headphones" }
+        ];
+        const grid = document.getElementById('projectsGrid');
+        grid.innerHTML = projects.map((p, i) => `<div class="project-card" data-project='${JSON.stringify(p)}'><div class="project-img"><i class="${p.icon} fa-3x"></i></div><div class="project-info"><h3>${p.name}</h3><p>${p.desc.substring(0, 70)}...</p></div></div>`).join('');
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => { const data = JSON.parse(card.getAttribute('data-project')); document.getElementById('modalTitle').innerText = data.name; document.getElementById('modalDesc').innerText = data.desc; document.getElementById('projectModal').style.display = 'flex'; });
+        });
+        
+        // Seminars list
+        const seminars = [
+            { title: "Technological Talk of Synergy: Electrical and Electronics Engineering Summit", date: "May 16, 2023" },
+            { title: "Anti-Cybercrime Upskilling Initiative (Project Acuity)", date: "May 8, 2024" },
+            { title: "Global Blockchain Congress 2024", date: "September 24, 2024" },
+            { title: "DEVCON iThink ICP Bootcamp", date: "April 11, 2025" }, { title: "Founders Live", date: "April 11, 2025" },
+            { title: "Tech Talk: Innovate, Design, Present: Creating Solutions that Matter", date: "February 18, 2025" },
+            { title: "Internet of Things (IoT) in Smart Cities", date: "October 13, 2025" },{ title: "Software Development and Design Thinking", date: "October 13, 2025" },
+            { title: "Awareness-Raising Campaign on AI through Hour of Code", date: "November 21, 2025" },{ title: "Global Blockchain Congress 2025", date: "October 27–28, 2025" }
+        ];
+        const timelineDiv = document.getElementById('timelineContainer');
+        timelineDiv.innerHTML = seminars.map(s => `<div class="timeline-item"><div class="timeline-date">${s.date}</div><div class="timeline-title">${s.title}</div></div>`).join('');
+        
+        // GSAP ScrollTrigger for sections and timeline
+        gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+            gsap.fromTo(item, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.8, scrollTrigger: { trigger: item, start: "top 85%", toggleActions: "play none none reverse" } });
+        });
+        gsap.utils.toArray('.skill-card, .project-card, .glass-card, .stat-item').forEach(el => {
+            gsap.from(el, { opacity: 0, y: 60, duration: 0.8, scrollTrigger: { trigger: el, start: "top 85%" } });
+        });
+        
+        // Stats counter
+        const counters = document.querySelectorAll('.stat-number');
+        const animateStats = () => { counters.forEach(c => { const target = +c.dataset.target; let count = 0; const update = () => { if(count < target) { count += Math.ceil(target/40); c.innerText = count; requestAnimationFrame(update); } else c.innerText = target; }; update(); }); };
+        ScrollTrigger.create({ trigger: "#statsContainer", start: "top 80%", onEnter: animateStats, once: true });
+        
+        // active nav highlight
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+        window.addEventListener("scroll", () => { let current = ""; sections.forEach(section => { const top = section.offsetTop - 150; if (pageYOffset >= top) current = section.getAttribute("id"); }); navLinks.forEach(link => { link.classList.remove("active"); if (link.getAttribute("href") === `#${current}`) link.classList.add("active"); }); });
+    }
+    
+    // Buttons and modal
+    document.getElementById('viewProjectsBtn')?.addEventListener('click', () => lenis.scrollTo('#projects'));
+    document.getElementById('contactScrollBtn')?.addEventListener('click', () => lenis.scrollTo('#contact'));
+    document.getElementById('downloadResumeBtn')?.addEventListener('click', () => { const blob = new Blob(["Darwin Mauricio Palaguyan - Web Developer Resume: Skills: HTML/CSS/JS, IoT, PHP, etc."], {type: "application/pdf"}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = "Darwin_Resume.pdf"; link.click(); });
+    document.getElementById('closeModal')?.addEventListener('click', () => document.getElementById('projectModal').style.display = 'none');
+    document.getElementById('backToTop')?.addEventListener('click', () => lenis.scrollTo(0));
+    
+    // Copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => btn.addEventListener('click', () => { navigator.clipboard.writeText(btn.getAttribute('data-copy')); alert('Copied!'); }));
+    
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinksDiv = document.getElementById('navLinks');
+    hamburger?.addEventListener('click', () => navLinksDiv.classList.toggle('active'));
+    document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navLinksDiv.classList.remove('active')));
+    
+    // Contact form
+    document.getElementById('sendMsgBtn')?.addEventListener('click', () => { alert(`Thank you for reaching out, Darwin will respond soon.`); document.getElementById('contactName').value = ''; document.getElementById('contactEmail').value = ''; document.getElementById('contactMsg').value = ''; });
+    
+    // Progress Bar
+    window.addEventListener('scroll', () => { const winScroll = document.body.scrollTop || document.documentElement.scrollTop; const height = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = (winScroll / height) * 100; document.getElementById('progressBar').style.width = scrolled + "%"; });
+    
+    // Cursor
+    if(window.innerWidth > 768) {
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        document.addEventListener('mousemove', (e) => { cursorDot.style.opacity = 1; cursorOutline.style.opacity = 1; cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; cursorOutline.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1)`; });
+        document.querySelectorAll('a, button, .project-card, .skill-card').forEach(el => el.addEventListener('mouseenter', () => cursorOutline.classList.add('cursor-hover')));
+        document.querySelectorAll('a, button, .project-card, .skill-card').forEach(el => el.addEventListener('mouseleave', () => cursorOutline.classList.remove('cursor-hover')));
+    }
+</script>
 </body>
 </html>
