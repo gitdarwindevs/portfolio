@@ -8,16 +8,13 @@
     <meta name="author" content="Darwin Mauricio Palaguyan">
     <title>Darwin Palaguyan | Web Developer & IoT Innovator</title>
     
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- GSAP, ScrollTrigger, Lenis Smooth Scroll -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     
-    <!-- Three.js -->
     <script type="importmap">
         {
             "imports": {
@@ -41,7 +38,6 @@
             cursor: default;
         }
 
-        /* Custom Cursor (Desktop) */
         @media (min-width: 768px) {
             body {
                 cursor: none;
@@ -77,7 +73,6 @@
             }
         }
 
-        /* Scroll Progress Bar */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -90,7 +85,6 @@
             box-shadow: 0 0 8px #00f2ff;
         }
 
-        /* Loader */
         .loader {
             position: fixed;
             inset: 0;
@@ -118,7 +112,6 @@
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 20px;
@@ -201,7 +194,6 @@
             }
         }
 
-        /* Glass Sections */
         section {
             padding: 100px 7%;
             position: relative;
@@ -226,7 +218,6 @@
             display: inline-block;
         }
 
-        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -296,7 +287,6 @@
         .btn-primary:hover { transform: translateY(-3px); filter: brightness(1.05); }
         .btn-outline:hover { background: rgba(0,242,255,0.1); transform: translateY(-3px); }
 
-        /* Stats */
         .stats-grid {
             display: flex;
             justify-content: space-between;
@@ -307,7 +297,6 @@
         .stat-item { text-align: center; flex: 1; }
         .stat-number { font-size: 2.8rem; font-weight: 800; color: #00f2ff; }
 
-        /* Skills Grid */
         .skills-grid, .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -351,7 +340,6 @@
         }
         .project-info { padding: 1.5rem; }
 
-        /* Timeline */
         .timeline {
             position: relative;
             padding-left: 30px;
@@ -370,7 +358,6 @@
         }
         .timeline-date { font-weight: 700; color: #00f2ff; margin-bottom: 5px; }
         
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -390,7 +377,6 @@
             border: 1px solid #00f2ff;
         }
 
-        /* Contact */
         .contact-flex {
             display: flex;
             flex-wrap: wrap;
@@ -416,7 +402,6 @@
         }
         button { background: none; border: none; }
 
-        /* Back to top */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -470,7 +455,6 @@
 <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
 <main>
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Darwin Mauricio <br>Palaguyan</h1>
@@ -488,7 +472,6 @@
         </div>
     </section>
 
-    <!-- About -->
     <section id="about">
         <h2 class="section-title">About Me</h2>
         <div class="glass-card" style="padding: 2rem;">
@@ -509,7 +492,6 @@
         </div>
     </section>
 
-    <!-- Skills -->
     <section id="skills">
         <h2 class="section-title">Technical Arsenal</h2>
         <div class="skills-grid">
@@ -521,19 +503,16 @@
         </div>
     </section>
 
-    <!-- Projects -->
     <section id="projects">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid" id="projectsGrid"></div>
     </section>
 
-    <!-- Seminars Timeline -->
     <section id="seminars">
         <h2 class="section-title">Seminars & Certifications</h2>
         <div class="timeline" id="timelineContainer"></div>
     </section>
 
-    <!-- Education & Career Objective -->
     <section id="education">
         <h2 class="section-title">Education & Objective</h2>
         <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem;">
@@ -546,7 +525,6 @@
         </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
         <h2 class="section-title">Connect With Me</h2>
         <div class="contact-flex">
@@ -569,7 +547,6 @@
     </footer>
 </main>
 
-<!-- Modal -->
 <div id="projectModal" class="modal">
     <div class="modal-content">
         <h3 id="modalTitle"></h3>
@@ -582,7 +559,6 @@
     import * as THREE from 'three';
     import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
-    // Three.js Setup
     const scene = new THREE.Scene();
     scene.background = null;
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -596,7 +572,6 @@
     renderer.domElement.style.left = '0';
     renderer.domElement.style.zIndex = '-1';
     
-    // Particles
     const particleCount = 1800;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -644,21 +619,18 @@
     animate3D();
     window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
     
-    // Init Lenis
     const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     
     gsap.registerPlugin(ScrollTrigger);
     
-    // Loader
     window.addEventListener('load', () => {
         setTimeout(() => { document.getElementById('loader').style.opacity = '0'; setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 500); }, 800);
         initContent();
     });
     
     function initContent() {
-        // typewriter
         const typedEl = document.querySelector('.typed-text');
         const words = ["Web Developer", "IoT Innovator", "Problem Solver"];
         let idx = 0, charIdx = 0, isDeleting = false;
@@ -672,7 +644,6 @@
         }
         typeEffect();
         
-        // Projects data
         const projects = [
             { name: "Civil Service Master Reviewer", desc: "Responsive web-based review platform for Philippine Civil Service Examination.", icon: "fas fa-book-open" },
             { name: "Smart Control System", desc: "IoT appliance control using ESP32 technology.", icon: "fas fa-microchip" },
@@ -686,7 +657,6 @@
             card.addEventListener('click', () => { const data = JSON.parse(card.getAttribute('data-project')); document.getElementById('modalTitle').innerText = data.name; document.getElementById('modalDesc').innerText = data.desc; document.getElementById('projectModal').style.display = 'flex'; });
         });
         
-        // Seminars list
         const seminars = [
             { title: "Technological Talk of Synergy: Electrical and Electronics Engineering Summit", date: "May 16, 2023" },
             { title: "Anti-Cybercrime Upskilling Initiative (Project Acuity)", date: "May 8, 2024" },
@@ -699,7 +669,6 @@
         const timelineDiv = document.getElementById('timelineContainer');
         timelineDiv.innerHTML = seminars.map(s => `<div class="timeline-item"><div class="timeline-date">${s.date}</div><div class="timeline-title">${s.title}</div></div>`).join('');
         
-        // GSAP ScrollTrigger for sections and timeline
         gsap.utils.toArray('.timeline-item').forEach((item, i) => {
             gsap.fromTo(item, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.8, scrollTrigger: { trigger: item, start: "top 85%", toggleActions: "play none none reverse" } });
         });
@@ -707,40 +676,32 @@
             gsap.from(el, { opacity: 0, y: 60, duration: 0.8, scrollTrigger: { trigger: el, start: "top 85%" } });
         });
         
-        // Stats counter
         const counters = document.querySelectorAll('.stat-number');
         const animateStats = () => { counters.forEach(c => { const target = +c.dataset.target; let count = 0; const update = () => { if(count < target) { count += Math.ceil(target/40); c.innerText = count; requestAnimationFrame(update); } else c.innerText = target; }; update(); }); };
         ScrollTrigger.create({ trigger: "#statsContainer", start: "top 80%", onEnter: animateStats, once: true });
         
-        // active nav highlight
         const sections = document.querySelectorAll("section");
         const navLinks = document.querySelectorAll(".nav-link");
         window.addEventListener("scroll", () => { let current = ""; sections.forEach(section => { const top = section.offsetTop - 150; if (pageYOffset >= top) current = section.getAttribute("id"); }); navLinks.forEach(link => { link.classList.remove("active"); if (link.getAttribute("href") === `#${current}`) link.classList.add("active"); }); });
     }
     
-    // Buttons and modal
     document.getElementById('viewProjectsBtn')?.addEventListener('click', () => lenis.scrollTo('#projects'));
     document.getElementById('contactScrollBtn')?.addEventListener('click', () => lenis.scrollTo('#contact'));
-    document.getElementById('downloadResumeBtn')?.addEventListener('click', () => { const blob = new Blob(["Darwin Mauricio Palaguyan - Web Developer Resume: Skills: HTML/CSS/JS, IoT, PHP, etc."], {type: "application/pdf"}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = "Darwin_Resume.pdf"; link.click(); });
+    document.getElementById('downloadResumeBtn')?.addEventListener('click', () => { const blob = new Blob(["Darwin Mauricio Palaguyan - Web Developer Resume: Skills: HTML/CSS/JS, IoT, PHP, etc."], {type: "application/pdf"}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = "Palaguyan, Darwin_Resume.pdf"; link.click(); });
     document.getElementById('closeModal')?.addEventListener('click', () => document.getElementById('projectModal').style.display = 'none');
     document.getElementById('backToTop')?.addEventListener('click', () => lenis.scrollTo(0));
     
-    // Copy buttons
     document.querySelectorAll('.copy-btn').forEach(btn => btn.addEventListener('click', () => { navigator.clipboard.writeText(btn.getAttribute('data-copy')); alert('Copied!'); }));
     
-    // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const navLinksDiv = document.getElementById('navLinks');
     hamburger?.addEventListener('click', () => navLinksDiv.classList.toggle('active'));
     document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navLinksDiv.classList.remove('active')));
     
-    // Contact form
     document.getElementById('sendMsgBtn')?.addEventListener('click', () => { alert(`Thank you for reaching out, Darwin will respond soon.`); document.getElementById('contactName').value = ''; document.getElementById('contactEmail').value = ''; document.getElementById('contactMsg').value = ''; });
     
-    // Progress Bar
     window.addEventListener('scroll', () => { const winScroll = document.body.scrollTop || document.documentElement.scrollTop; const height = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = (winScroll / height) * 100; document.getElementById('progressBar').style.width = scrolled + "%"; });
     
-    // Cursor
     if(window.innerWidth > 768) {
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
