@@ -687,7 +687,7 @@
     
     document.getElementById('viewProjectsBtn')?.addEventListener('click', () => lenis.scrollTo('#projects'));
     document.getElementById('contactScrollBtn')?.addEventListener('click', () => lenis.scrollTo('#contact'));
-    document.getElementById('downloadResumeBtn')?.addEventListener('click', () => { const blob = new Blob(["Darwin Mauricio Palaguyan - Web Developer Resume: Skills: HTML/CSS/JS, IoT, PHP, etc."], {type: "application/pdf"}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = "Palaguyan, Darwin_Resume.pdf"; link.click(); });
+    document.getElementById('downloadResumeBtn')?.addEventListener('click', () => { const blob = new Blob(["Darwin Mauricio Palaguyan - Web Developer Resume: Skills: HTML/CSS/JS, IoT, PHP, etc."], {type: "application/pdf"}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = "Palaguyan,Darwin_Resume.pdf"; link.click(); });
     document.getElementById('closeModal')?.addEventListener('click', () => document.getElementById('projectModal').style.display = 'none');
     document.getElementById('backToTop')?.addEventListener('click', () => lenis.scrollTo(0));
     
